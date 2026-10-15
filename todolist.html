@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <style>
+        body{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box1{
+            background-color: black;
+            width: 300px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content:center;
+            align-items: center;
+            border-radius: 20px;
+            gap: 20px;
+        }
+        .box1 input{
+            background-color: transparent;
+            border: 0;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            outline: 0;
+            margin-left: 9px;
+        }
+        .box1 button{
+            background-color: white;
+            color: black;
+            font-weight: 800;
+            border:0;
+            border-radius: 16px;
+            padding: 15px;
+            margin-right: 1px;
+            font-size: 15px;
+        }
+        .box1 button:hover{
+            background-color: yellow;
+            cursor: pointer;
+        }
+        #para{
+            font-weight: 800;
+            font-size: 20px;
+            color: black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #del, #L {
+            font-weight: 800;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            border: 0px;
+            border-radius: 20px;
+        }
+        #del:hover, #L:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <input id="inputs">
+        <button id="add">Add</button>
+    </div>
+    <div class="box2" id="box2">
+        
+    </div>
+    <script>
+
+        let inputs = document.getElementById("inputs");
+        let btn = document.getElementById("add");
+        let box2 = document.getElementById("box2");
+
+        btn.addEventListener("click",()=>{
+            lists();
+        });
+
+
+        function lists(){
+            let p = document.createElement("p");
+            let del = document.createElement("button");
+            let L = document.createElement("button");
+            p.id = "para";
+            del.id = "del";
+            L.id = "L";
+            p.innerHTML = inputs.value;
+            del.innerHTML = "Delete";
+            L.innerHTML = "line"
+            box2.append(p);
+            box2.append(del);
+            box2.append(L);
+            inputs.value = "";
+            del.addEventListener("click",clear);
+            L.addEventListener("click",line);
+            
+            
+
+            function clear(){
+                p.remove();
+                del.style.visibility = "hidden";
+                L.style.visibility = "hidden";
+            }
+
+            function line(){
+                p.style.textDecoration = "line-through";
+            }
+        }
+    </script>
+</body>
+</html>
